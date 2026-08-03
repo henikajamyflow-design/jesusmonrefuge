@@ -10,6 +10,8 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as DonRouteImport } from './routes/don'
 import { Route as EgliseRouteImport } from './routes/eglise'
 import { Route as MissionRouteImport } from './routes/mission'
 import { Route as OrphelinatRouteImport } from './routes/orphelinat'
@@ -17,6 +19,16 @@ import { Route as OrphelinatRouteImport } from './routes/orphelinat'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DonRoute = DonRouteImport.update({
+  id: '/don',
+  path: '/don',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EgliseRoute = EgliseRouteImport.update({
@@ -37,12 +49,16 @@ const OrphelinatRoute = OrphelinatRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
+  '/don': typeof DonRoute
   '/eglise': typeof EgliseRoute
   '/mission': typeof MissionRoute
   '/orphelinat': typeof OrphelinatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
+  '/don': typeof DonRoute
   '/eglise': typeof EgliseRoute
   '/mission': typeof MissionRoute
   '/orphelinat': typeof OrphelinatRoute
@@ -50,20 +66,31 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
+  '/don': typeof DonRoute
   '/eglise': typeof EgliseRoute
   '/mission': typeof MissionRoute
   '/orphelinat': typeof OrphelinatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/eglise' | '/mission' | '/orphelinat'
+  fullPaths: '/' | '/contact' | '/don' | '/eglise' | '/mission' | '/orphelinat'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/eglise' | '/mission' | '/orphelinat'
-  id: '__root__' | '/' | '/eglise' | '/mission' | '/orphelinat'
+  to: '/' | '/contact' | '/don' | '/eglise' | '/mission' | '/orphelinat'
+  id:
+    | '__root__'
+    | '/'
+    | '/contact'
+    | '/don'
+    | '/eglise'
+    | '/mission'
+    | '/orphelinat'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ContactRoute: typeof ContactRoute
+  DonRoute: typeof DonRoute
   EgliseRoute: typeof EgliseRoute
   MissionRoute: typeof MissionRoute
   OrphelinatRoute: typeof OrphelinatRoute
@@ -76,6 +103,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/don': {
+      id: '/don'
+      path: '/don'
+      fullPath: '/don'
+      preLoaderRoute: typeof DonRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/eglise': {
@@ -104,6 +145,8 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ContactRoute: ContactRoute,
+  DonRoute: DonRoute,
   EgliseRoute: EgliseRoute,
   MissionRoute: MissionRoute,
   OrphelinatRoute: OrphelinatRoute,
