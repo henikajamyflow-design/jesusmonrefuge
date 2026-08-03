@@ -29,7 +29,7 @@ export function Header() {
         "fixed inset-x-0 top-0 z-50 transition-all duration-500",
         scrolled
           ? "border-b border-border/70 bg-background/85 backdrop-blur-xl py-2"
-          : "bg-transparent py-4",
+          : "bg-gradient-to-b from-foreground/55 to-transparent py-4 text-primary-foreground",
       )}
     >
       <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 lg:px-8">
@@ -39,7 +39,12 @@ export function Header() {
           </span>
           <span className="min-w-0 leading-tight">
             <span className="block truncate font-display text-[0.95rem] font-semibold">{t.org}</span>
-            <span className="block text-[0.7rem] uppercase tracking-[0.18em] text-muted-foreground">
+            <span
+              className={cn(
+                "block text-[0.7rem] uppercase tracking-[0.18em]",
+                scrolled ? "text-muted-foreground" : "text-primary-foreground/70",
+              )}
+            >
               {t.orgSub}
             </span>
           </span>
@@ -52,15 +57,25 @@ export function Header() {
                 key={item.to}
                 to={item.to}
                 activeOptions={{ exact: item.to === "/" }}
-                activeProps={{ className: "text-primary" }}
-                className="relative rounded-full px-3 py-2 text-sm text-foreground/75 transition-colors hover:text-primary after:absolute after:inset-x-3 after:bottom-1 after:h-px after:origin-left after:scale-x-0 after:bg-primary after:transition-transform after:duration-300 hover:after:scale-x-100"
+                activeProps={{ className: scrolled ? "text-primary" : "opacity-100" }}
+                className={cn(
+                  "relative rounded-full px-3 py-2 text-sm transition-colors after:absolute after:inset-x-3 after:bottom-1 after:h-px after:origin-left after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100",
+                  scrolled
+                    ? "text-foreground/75 hover:text-primary after:bg-primary"
+                    : "text-primary-foreground/85 hover:text-primary-foreground after:bg-primary-foreground",
+                )}
               >
                 {item.label}
               </Link>
             ))}
           </nav>
 
-          <div className="ml-1 flex items-center rounded-full border border-border bg-card p-0.5 text-xs font-semibold">
+          <div
+            className={cn(
+              "ml-1 flex items-center rounded-full border p-0.5 text-xs font-semibold",
+              scrolled ? "border-border bg-card" : "border-primary-foreground/30 bg-foreground/25 backdrop-blur",
+            )}
+          >
             {(["fr", "en"] as const).map((code) => (
               <button
                 key={code}
@@ -71,7 +86,9 @@ export function Header() {
                   "rounded-full px-2.5 py-1 uppercase transition-colors",
                   lang === code
                     ? "bg-primary text-primary-foreground"
-                    : "text-muted-foreground hover:text-foreground",
+                    : scrolled
+                      ? "text-muted-foreground hover:text-foreground"
+                      : "text-primary-foreground/80 hover:text-primary-foreground",
                 )}
               >
                 {code}
@@ -91,18 +108,21 @@ export function Header() {
             aria-label="Menu"
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            className="grid size-10 shrink-0 place-items-center rounded-full border border-border bg-card lg:hidden"
+            className={cn(
+              "grid size-10 shrink-0 place-items-center rounded-full border lg:hidden",
+              scrolled ? "border-border bg-card" : "border-primary-foreground/30 bg-foreground/25 backdrop-blur",
+            )}
           >
             <span className="relative block h-3 w-4">
               <span
                 className={cn(
-                  "absolute inset-x-0 top-0 h-0.5 rounded bg-foreground transition-transform duration-300",
+                  "absolute inset-x-0 top-0 h-0.5 rounded bg-current transition-transform duration-300",
                   open && "top-1.5 rotate-45",
                 )}
               />
               <span
                 className={cn(
-                  "absolute inset-x-0 bottom-0 h-0.5 rounded bg-foreground transition-transform duration-300",
+                  "absolute inset-x-0 bottom-0 h-0.5 rounded bg-current transition-transform duration-300",
                   open && "bottom-1.5 -rotate-45",
                 )}
               />
@@ -118,7 +138,7 @@ export function Header() {
         )}
       >
         <nav className="min-h-0 overflow-hidden">
-          <div className="flex flex-col gap-1 rounded-3xl border border-border bg-card p-3 shadow-soft">
+          <div className="flex flex-col gap-1 rounded-3xl border border-border bg-card p-3 text-foreground shadow-soft">
             {items.map((item) => (
               <Link
                 key={item.to}
