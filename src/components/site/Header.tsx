@@ -1,15 +1,18 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { useLang } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
 export function Header() {
   const { t, lang, setLang } = useLang();
-  const [scrolled, setScrolled] = useState(false);
+  const [atTop, setAtTop] = useState(true);
   const [open, setOpen] = useState(false);
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const overHero = pathname === "/" && atTop && !open;
+  const scrolled = !overHero;
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => setAtTop(window.scrollY <= 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
