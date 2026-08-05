@@ -15,6 +15,7 @@ import { Route as DonRouteImport } from './routes/don'
 import { Route as EgliseRouteImport } from './routes/eglise'
 import { Route as MissionRouteImport } from './routes/mission'
 import { Route as OrphelinatRouteImport } from './routes/orphelinat'
+import { Route as DonMerciRouteImport } from './routes/don.merci'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -46,37 +47,59 @@ const OrphelinatRoute = OrphelinatRouteImport.update({
   path: '/orphelinat',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DonMerciRoute = DonMerciRouteImport.update({
+  id: '/merci',
+  path: '/merci',
+  getParentRoute: () => DonRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
-  '/don': typeof DonRoute
+  '/don': typeof DonRouteWithChildren
   '/eglise': typeof EgliseRoute
   '/mission': typeof MissionRoute
   '/orphelinat': typeof OrphelinatRoute
+  '/don/merci': typeof DonMerciRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
-  '/don': typeof DonRoute
+  '/don': typeof DonRouteWithChildren
   '/eglise': typeof EgliseRoute
   '/mission': typeof MissionRoute
   '/orphelinat': typeof OrphelinatRoute
+  '/don/merci': typeof DonMerciRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
-  '/don': typeof DonRoute
+  '/don': typeof DonRouteWithChildren
   '/eglise': typeof EgliseRoute
   '/mission': typeof MissionRoute
   '/orphelinat': typeof OrphelinatRoute
+  '/don/merci': typeof DonMerciRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/contact' | '/don' | '/eglise' | '/mission' | '/orphelinat'
+  fullPaths:
+    | '/'
+    | '/contact'
+    | '/don'
+    | '/eglise'
+    | '/mission'
+    | '/orphelinat'
+    | '/don/merci'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/contact' | '/don' | '/eglise' | '/mission' | '/orphelinat'
+  to:
+    | '/'
+    | '/contact'
+    | '/don'
+    | '/eglise'
+    | '/mission'
+    | '/orphelinat'
+    | '/don/merci'
   id:
     | '__root__'
     | '/'
@@ -85,12 +108,13 @@ export interface FileRouteTypes {
     | '/eglise'
     | '/mission'
     | '/orphelinat'
+    | '/don/merci'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ContactRoute: typeof ContactRoute
-  DonRoute: typeof DonRoute
+  DonRoute: typeof DonRouteWithChildren
   EgliseRoute: typeof EgliseRoute
   MissionRoute: typeof MissionRoute
   OrphelinatRoute: typeof OrphelinatRoute
@@ -140,13 +164,30 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OrphelinatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/don/merci': {
+      id: '/don/merci'
+      path: '/merci'
+      fullPath: '/don/merci'
+      preLoaderRoute: typeof DonMerciRouteImport
+      parentRoute: typeof DonRoute
+    }
   }
 }
+
+interface DonRouteChildren {
+  DonMerciRoute: typeof DonMerciRoute
+}
+
+const DonRouteChildren: DonRouteChildren = {
+  DonMerciRoute: DonMerciRoute,
+}
+
+const DonRouteWithChildren = DonRoute._addFileChildren(DonRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ContactRoute: ContactRoute,
-  DonRoute: DonRoute,
+  DonRoute: DonRouteWithChildren,
   EgliseRoute: EgliseRoute,
   MissionRoute: MissionRoute,
   OrphelinatRoute: OrphelinatRoute,
@@ -154,13 +195,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

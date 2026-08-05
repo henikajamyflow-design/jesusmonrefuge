@@ -122,7 +122,7 @@ function DonatePage() {
 
               <div className="mt-8">
                 {step === 0 ? (
-                  <div className="animate-in">
+                  <div className="">
                     <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">
                       {t.flow.frequency}
                     </p>
@@ -204,7 +204,7 @@ function DonatePage() {
                 ) : null}
 
                 {step === 1 ? (
-                  <div className="animate-in space-y-4">
+                  <div className="space-y-4">
                     <label className="block text-sm font-medium">
                       {t.flow.nameLabel}
                       <input
@@ -221,7 +221,7 @@ function DonatePage() {
                         type="checkbox"
                         checked={anonymous}
                         onChange={(e) => setAnonymous(e.target.checked)}
-                        className="size-4 accent-[hsl(var(--primary))]"
+                        className="size-4 accent-current text-primary"
                       />
                       {t.flow.anonymous}
                     </label>
@@ -255,7 +255,7 @@ function DonatePage() {
                 ) : null}
 
                 {step === 2 ? (
-                  <div className="animate-in">
+                  <div className="">
                     <h2 className="text-2xl font-bold">{t.flow.review}</h2>
                     <dl className="mt-5 space-y-3 rounded-2xl bg-secondary/60 p-5 text-sm">
                       <div className="flex justify-between gap-4">
