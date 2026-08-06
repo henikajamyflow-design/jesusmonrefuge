@@ -238,6 +238,19 @@ export const content = {
       "Enable their schooling in a Christian school and fund equipment that improves daily life.",
       "Make disciples: children discover and grow in the Christian faith.",
     ],
+    founders: {
+      eyebrow: "The founders",
+      title: "C-Maias & Amaya",
+      role: "Pastoral couple · Founders of the association",
+      body: [
+        "The pastoral couple C-Maias and Amaya are the founders of the association Orphelinat Jésus Mon Refuge Madagascar.",
+        "Fully committed to ministry, they received the vision to fulfil what the Holy Scriptures teach in the book of James 1:27:",
+        "Just as God did not leave us as orphans, the founders carry a deep concern to meet the needs of abandoned children.",
+      ],
+      verse:
+        "\u201cReligion that is pure and undefiled before God the Father is this: to visit orphans and widows in their affliction, and to keep oneself unstained from the world.\u201d — James 1:27",
+      photoAlt: "C-Maias and Amaya, the pastoral couple who founded the orphanage",
+    },
     donate: {
       title: "Giving means offering a future",
       body: "Every gift, one-off or monthly, turns into meals, notebooks, care and smiles.",
