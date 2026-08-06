@@ -86,6 +86,19 @@ export const content = {
       "Permettez leur scolarisation dans une école chrétienne et financez le matériel qui améliore leur quotidien.",
       "Faites des disciples : les enfants découvrent et grandissent dans la foi chrétienne.",
     ],
+    founders: {
+      eyebrow: "Les fondateurs",
+      title: "C-Maias & Amaya",
+      role: "Couple pastoral · Fondateurs de l'association",
+      body: [
+        "Le couple pastoral C-Maias et Amaya sont les fondateurs de l'association Orphelinat Jésus Mon Refuge Madagascar.",
+        "Engagés pleinement dans le ministère, ils ont eu la vision d'accomplir ce que les Saintes Écritures enseignent dans le livre de Jacques 1:27 :",
+        "En effet, de la même manière que Dieu ne nous a pas laissés orphelins, les fondateurs ont notamment la préoccupation de répondre aux besoins des enfants délaissés.",
+      ],
+      verse:
+        "\u00ab La religion pure et sans tâche, devant Dieu notre Père, consiste à secourir les orphelins et les veuves dans leurs affliction et à se préserver des souillures du monde. \u00bb — Jacques 1:27",
+      photoAlt: "C-Maias et Amaya, couple pastoral fondateur de l'orphelinat",
+    },
     donate: {
       title: "Donner, c'est offrir un avenir",
       body: "Chaque don, ponctuel ou régulier, se traduit en repas, en cahiers, en soins et en sourires.",
@@ -225,6 +238,19 @@ export const content = {
       "Enable their schooling in a Christian school and fund equipment that improves daily life.",
       "Make disciples: children discover and grow in the Christian faith.",
     ],
+    founders: {
+      eyebrow: "The founders",
+      title: "C-Maias & Amaya",
+      role: "Pastoral couple · Founders of the association",
+      body: [
+        "The pastoral couple C-Maias and Amaya are the founders of the association Orphelinat Jésus Mon Refuge Madagascar.",
+        "Fully committed to ministry, they received the vision to fulfil what the Holy Scriptures teach in the book of James 1:27:",
+        "Just as God did not leave us as orphans, the founders carry a deep concern to meet the needs of abandoned children.",
+      ],
+      verse:
+        "\u201cReligion that is pure and undefiled before God the Father is this: to visit orphans and widows in their affliction, and to keep oneself unstained from the world.\u201d — James 1:27",
+      photoAlt: "C-Maias and Amaya, the pastoral couple who founded the orphanage",
+    },
     donate: {
       title: "Giving means offering a future",
       body: "Every gift, one-off or monthly, turns into meals, notebooks, care and smiles.",
