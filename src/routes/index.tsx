@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useLang } from "@/lib/i18n";
 import { Reveal } from "@/components/site/Reveal";
 import { Zigzag } from "@/components/site/Section";
+import { Founders } from "@/components/site/Founders";
 import heroImg from "@/assets/hero-children.jpg";
 import educationImg from "@/assets/education.jpg";
 import mealsImg from "@/assets/meals.jpg";
@@ -153,6 +154,8 @@ function Index() {
           />
         ))}
       </section>
+
+      <Founders />
 
       <section className="relative overflow-hidden gradient-warm py-24 lg:py-32">
         <div className="mx-auto max-w-5xl px-5 text-center lg:px-8">
