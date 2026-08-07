@@ -11,7 +11,7 @@ export function Footer() {
         <Reveal>
           <div className="grain relative overflow-hidden rounded-[2.25rem] gradient-warm px-8 py-12 text-center shadow-lift lg:px-16 lg:py-16">
             <h2 className="relative mx-auto max-w-2xl font-display text-3xl font-extrabold leading-tight text-primary-foreground sm:text-4xl">
-              {t.sponsorTitle}
+              {t.footerCta}
             </h2>
             <div className="relative mt-8 flex flex-wrap justify-center gap-3">
               <Link
