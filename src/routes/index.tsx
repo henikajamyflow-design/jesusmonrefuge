@@ -21,10 +21,10 @@ export const Route = createFileRoute("/")({
         content:
           "Orphelinat chrétien à Antananarivo. Éducation, repas, soins et parrainage d'enfants orphelins à Madagascar.",
       },
-      { property: "og:title", content: "Orphelinat Jésus Mon Refuge — Madagascar" },
+      { property: "og:title", content: "Orphelinat Jésus Mon Refuge — Parrainer un enfant à Madagascar" },
       {
         property: "og:description",
-        content: "Prenons soin des orphelins : éducation, repas, soins et parrainage à Antananarivo.",
+        content: "Orphelinat chrétien à Antananarivo. Éducation, repas, soins et parrainage d'enfants orphelins à Madagascar.",
       },
     ],
   }),

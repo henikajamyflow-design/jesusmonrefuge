@@ -82,21 +82,25 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Orphelinat Jésus Mon Refuge — Madagascar" },
+      { title: "Orphelinat Jésus Mon Refuge — Parrainer un enfant à Madagascar" },
       {
         name: "description",
         content:
-          "Orphelinat chrétien à Antananarivo : éducation, santé et parrainage d'enfants à Madagascar.",
+          "Orphelinat chrétien à Antananarivo. Éducation, repas, soins et parrainage d'enfants orphelins à Madagascar.",
       },
       { name: "author", content: "Orphelinat Jésus Mon Refuge" },
-      { property: "og:title", content: "Orphelinat Jésus Mon Refuge — Madagascar" },
+      { property: "og:title", content: "Orphelinat Jésus Mon Refuge — Parrainer un enfant à Madagascar" },
       {
         property: "og:description",
         content:
-          "Orphelinat chrétien à Antananarivo : éducation, santé et parrainage d'enfants à Madagascar.",
+          "Orphelinat chrétien à Antananarivo. Éducation, repas, soins et parrainage d'enfants orphelins à Madagascar.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Orphelinat Jésus Mon Refuge — Parrainer un enfant à Madagascar" },
+      { name: "twitter:description", content: "Orphelinat chrétien à Antananarivo. Éducation, repas, soins et parrainage d'enfants orphelins à Madagascar." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/cb14e1b0d531e2053aa7e0b98c743936/id-preview-6f936bd6--2aee645f-50cc-4edf-bebe-93213e6ebf45.lovable.app-1786127824011.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/cb14e1b0d531e2053aa7e0b98c743936/id-preview-6f936bd6--2aee645f-50cc-4edf-bebe-93213e6ebf45.lovable.app-1786127824011.png" },
     ],
     links: [
       {
