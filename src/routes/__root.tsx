@@ -14,6 +14,8 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { LanguageProvider } from "@/lib/i18n";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
+import { ScrollProgress } from "@/components/site/ScrollProgress";
+import { BackToTop } from "@/components/site/BackToTop";
 
 function NotFoundComponent() {
   return (
@@ -136,12 +138,14 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <LanguageProvider>
+        <ScrollProgress />
         <Header />
         <main className="min-h-screen">
           {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
           <Outlet />
         </main>
         <Footer />
+        <BackToTop label="Haut de page" />
       </LanguageProvider>
     </QueryClientProvider>
   );
