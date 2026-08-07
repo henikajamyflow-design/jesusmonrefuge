@@ -48,7 +48,7 @@ function Index() {
 
   return (
     <>
-      <section className="grain relative flex min-h-[100svh] items-end overflow-hidden">
+      <section className="grain relative flex min-h-screen items-end overflow-hidden">
         <img
           src={heroImg}
           alt={t.hero.kicker}
@@ -80,9 +80,9 @@ function Index() {
 
           <h1 className="mt-6 max-w-4xl font-display text-5xl font-extrabold leading-[0.95] text-primary-foreground sm:text-6xl lg:text-8xl">
             <span className="sr-only">{t.hero.title}</span>
-            <span aria-hidden className="flex flex-wrap gap-x-4">
+            <span aria-hidden className="flex flex-wrap">
               {titleWords.map((word, i) => (
-                <span key={`${word}-${i}`} className="overflow-hidden pb-1">
+                <span key={`${word}-${i}`} className="overflow-hidden pb-1 pr-[0.28em]">
                   <span
                     className="word-rise"
                     style={{ animationDelay: `${120 + i * 90}ms` }}
