@@ -37,6 +37,7 @@ export function Zigzag({
   image,
   alt,
   flip,
+  index,
   children,
 }: {
   eyebrow: string;
@@ -45,6 +46,7 @@ export function Zigzag({
   image: string;
   alt: string;
   flip?: boolean;
+  index?: number;
   children?: ReactNode;
 }) {
   return (
@@ -63,10 +65,18 @@ export function Zigzag({
             aria-hidden
             className="absolute inset-0 bg-gradient-to-t from-foreground/25 to-transparent opacity-70"
           />
+          {index ? (
+            <span className="absolute left-5 top-5 grid size-12 place-items-center rounded-2xl bg-card/90 font-display text-lg font-extrabold text-primary shadow-soft backdrop-blur transition-transform duration-500 group-hover:-translate-y-1">
+              0{index}
+            </span>
+          ) : null}
         </div>
       </Reveal>
       <Reveal delay={120} className={cn("order-2", flip && "lg:order-1")}>
-        <p className="text-xs font-semibold uppercase tracking-[0.28em] text-primary">{eyebrow}</p>
+        <p className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.28em] text-primary">
+          <span aria-hidden className="h-px w-8 gradient-warm" />
+          {eyebrow}
+        </p>
         <h3 className="mt-3 text-3xl font-bold leading-tight sm:text-4xl">{title}</h3>
         <p className="mt-5 text-lg leading-relaxed text-muted-foreground">{body}</p>
         {children}
