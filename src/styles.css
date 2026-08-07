@@ -225,3 +225,76 @@
     transition-duration: 0.001ms !important;
   }
 }
+
+@utility text-gradient-warm {
+  background-image: var(--gradient-warm);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+@utility grain {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.35;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.25'/%3E%3C/svg%3E");
+  }
+}
+
+@keyframes marquee-x {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@utility marquee-track {
+  animation: marquee-x 32s linear infinite;
+}
+
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(120%) rotate(4deg); }
+  to { opacity: 1; transform: none; }
+}
+
+@utility word-rise {
+  display: inline-block;
+  animation: rise-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes scroll-cue {
+  0% { transform: translateY(-60%); opacity: 0; }
+  40% { opacity: 1; }
+  100% { transform: translateY(160%); opacity: 0; }
+}
+
+@utility scroll-cue {
+  animation: scroll-cue 2s ease-in-out infinite;
+}
+
+@utility spotlight {
+  position: relative;
+  isolation: isolate;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    background: radial-gradient(
+      18rem circle at var(--mx, 50%) var(--my, 50%),
+      color-mix(in oklab, var(--clay) 16%, transparent),
+      transparent 65%
+    );
+    z-index: -1;
+  }
+  &:hover::before { opacity: 1; }
+}
+
+html {
+  scroll-behavior: smooth;
+}

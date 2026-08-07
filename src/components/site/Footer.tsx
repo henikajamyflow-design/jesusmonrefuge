@@ -1,11 +1,35 @@
 import { Link } from "@tanstack/react-router";
 import { links, useLang } from "@/lib/i18n";
+import { Reveal } from "./Reveal";
 
 export function Footer() {
   const { t } = useLang();
 
   return (
-    <footer className="mt-24 border-t border-border bg-secondary/50">
+    <footer className="border-t border-border bg-secondary/50">
+      <div className="mx-auto max-w-7xl px-5 pt-16 lg:px-8">
+        <Reveal>
+          <div className="grain relative overflow-hidden rounded-[2.25rem] gradient-warm px-8 py-12 text-center shadow-lift lg:px-16 lg:py-16">
+            <h2 className="relative mx-auto max-w-2xl font-display text-3xl font-extrabold leading-tight text-primary-foreground sm:text-4xl">
+              {t.footerCta}
+            </h2>
+            <div className="relative mt-8 flex flex-wrap justify-center gap-3">
+              <Link
+                to="/don"
+                className="rounded-full bg-card px-8 py-4 text-sm font-semibold text-primary shadow-lift transition-transform duration-300 hover:-translate-y-1"
+              >
+                {t.cta.sponsor}
+              </Link>
+              <Link
+                to="/contact"
+                className="rounded-full border border-primary-foreground/50 px-8 py-4 text-sm font-semibold text-primary-foreground transition-colors duration-300 hover:bg-primary-foreground/10"
+              >
+                {t.nav.contact}
+              </Link>
+            </div>
+          </div>
+        </Reveal>
+      </div>
       <div className="mx-auto max-w-7xl px-5 py-16 lg:px-8">
         <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
           <div className="max-w-sm">
