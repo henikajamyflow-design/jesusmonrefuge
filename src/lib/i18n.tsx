@@ -80,6 +80,21 @@ export const content = {
         body: "Les enfants de l'orphelinat sont accueillis dans une église évangélique locale : un lieu de paix, de chants et d'espérance où chacun trouve sa place.",
       },
     ],
+    gallery: {
+      eyebrow: "Galerie vivante",
+      label: "Moments",
+      hint: "faites défiler pour explorer",
+      items: [
+        "Salle de classe",
+        "Le repas partagé",
+        "L'église",
+        "Sourire d'espérance",
+        "Apprendre ensemble",
+        "Jeux au soleil",
+        "Autour de la table",
+        "Grandir en famille",
+      ],
+    },
     sponsorTitle: "En parrainant un enfant, vous...",
     sponsorPoints: [
       "Aidez à sortir les orphelins de la rue et de ses dangers : faim, mendicité, prostitution.",
@@ -233,6 +248,21 @@ export const content = {
         body: "The orphanage children are welcomed into a local evangelical church: a place of peace, singing and hope where everyone belongs.",
       },
     ],
+    gallery: {
+      eyebrow: "Living gallery",
+      label: "Moments",
+      hint: "scroll to explore",
+      items: [
+        "Classroom",
+        "Shared meal",
+        "The church",
+        "A hopeful smile",
+        "Learning together",
+        "Playing in the sun",
+        "Around the table",
+        "Growing as family",
+      ],
+    },
     sponsorTitle: "By sponsoring a child, you...",
     sponsorPoints: [
       "Help get orphans off the streets and away from hunger, begging and exploitation.",

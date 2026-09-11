@@ -11,6 +11,11 @@ import heroImg from "@/assets/hero-children.jpg";
 import educationImg from "@/assets/education.jpg";
 import mealsImg from "@/assets/meals.jpg";
 import churchImg from "@/assets/church.jpg";
+import gallery1 from "@/assets/gallery-1.jpg";
+import gallery2 from "@/assets/gallery-2.jpg";
+import gallery3 from "@/assets/gallery-3.jpg";
+import gallery4 from "@/assets/gallery-4.jpg";
+import { CollectionSurfer } from "@/components/ui/collection-surfer";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -43,6 +48,16 @@ function Index() {
   }, []);
 
   const storyImages = [educationImg, mealsImg, churchImg];
+  const galleryImages = [
+    educationImg,
+    mealsImg,
+    churchImg,
+    gallery4,
+    gallery1,
+    gallery2,
+    gallery3,
+    heroImg,
+  ];
   const titleWords = t.hero.title.split(/\s+/);
   const marqueeItems = [...t.pillars.map((p) => p.title), t.org, t.hero.kicker];
 
@@ -230,6 +245,18 @@ function Index() {
           />
         ))}
       </section>
+
+      <CollectionSurfer
+        variant="magnetic"
+        eyebrow={t.gallery.eyebrow}
+        label={t.gallery.label}
+        hint={t.gallery.hint}
+        items={galleryImages.map((image, i) => ({
+          id: i + 1,
+          image,
+          title: t.gallery.items[i] ?? "",
+        }))}
+      />
 
       <Founders />
 
