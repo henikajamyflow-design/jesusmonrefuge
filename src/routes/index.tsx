@@ -48,6 +48,16 @@ function Index() {
   }, []);
 
   const storyImages = [educationImg, mealsImg, churchImg];
+  const galleryImages = [
+    educationImg,
+    mealsImg,
+    churchImg,
+    gallery4,
+    gallery1,
+    gallery2,
+    gallery3,
+    heroImg,
+  ];
   const titleWords = t.hero.title.split(/\s+/);
   const marqueeItems = [...t.pillars.map((p) => p.title), t.org, t.hero.kicker];
 
