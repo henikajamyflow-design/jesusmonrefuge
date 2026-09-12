@@ -1,9 +1,9 @@
 import * as React from "react";
 import {
-  animate,
   motion,
   useMotionValue,
   useReducedMotion,
+  useSpring,
   useTransform,
   type MotionValue,
   type PanInfo,
@@ -63,6 +63,7 @@ export function DonationAmountCarousel({
 }: DonationAmountCarouselProps) {
   const selectedIndex = Math.max(0, slides.findIndex((slide) => slide.amount === value));
   const progress = useMotionValue(selectedIndex);
+  const smoothProgress = useSpring(progress, { stiffness: 220, damping: 28 });
   const dragStart = React.useRef(0);
   const [windowWidth, setWindowWidth] = React.useState(1024);
   const reduceMotion = useReducedMotion();
@@ -76,14 +77,7 @@ export function DonationAmountCarousel({
 
   React.useEffect(() => {
     if (selectedIndex < 0) return;
-    const controls = animate(progress.get(), selectedIndex, {
-      type: reduceMotion ? "tween" : "spring",
-      duration: reduceMotion ? 0 : undefined,
-      stiffness: 220,
-      damping: 28,
-      onUpdate: (latest) => progress.set(latest),
-    });
-    return () => controls.stop();
+    progress.set(selectedIndex);
   }, [progress, reduceMotion, selectedIndex]);
 
   const config = React.useMemo(() => getCarouselConfig(windowWidth), [windowWidth]);
@@ -96,13 +90,7 @@ export function DonationAmountCarousel({
       const slide = slides[normalized];
       if (!slide) return;
       onValueChange(slide.amount);
-      animate(progress.get(), normalized, {
-        type: reduceMotion ? "tween" : "spring",
-        duration: reduceMotion ? 0 : undefined,
-        stiffness: 220,
-        damping: 28,
-        onUpdate: (latest) => progress.set(latest),
-      });
+      progress.set(normalized);
     },
     [onValueChange, progress, reduceMotion, slides, total],
   );
@@ -163,7 +151,7 @@ export function DonationAmountCarousel({
             slide={slide}
             index={index}
             total={total}
-            progress={progress}
+            progress={reduceMotion ? progress : smoothProgress}
             config={config}
             selected={value === slide.amount}
             selectedLabel={selectedLabel}
