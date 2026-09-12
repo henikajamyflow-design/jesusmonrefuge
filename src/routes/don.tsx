@@ -5,6 +5,12 @@ import { PageHero } from "@/components/site/Section";
 import { Reveal } from "@/components/site/Reveal";
 import { cn } from "@/lib/utils";
 import { PRESETS, paypalUrl, saveDonation, type Frequency } from "@/lib/donation";
+import { DonationAmountCarousel } from "@/components/ui/carousel-07";
+import { Button } from "@/components/ui/button";
+import educationImage from "@/assets/education.jpg";
+import mealsImage from "@/assets/meals.jpg";
+import galleryImage from "@/assets/gallery-1.jpg";
+import familyImage from "@/assets/gallery-4.jpg";
 
 export const Route = createFileRoute("/don")({
   head: () => ({
@@ -20,6 +26,8 @@ export const Route = createFileRoute("/don")({
         property: "og:description",
         content: "Chaque don se traduit en repas, en cahiers, en soins et en sourires.",
       },
+       { property: "og:type", content: "website" },
+       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: DonatePage,
@@ -51,6 +59,21 @@ function DonatePage() {
   }, [amount, validAmount, t]);
 
   const freqLabel = frequency === "monthly" ? t.flow.monthly : t.flow.once;
+  const amountImages = [educationImage, mealsImage, galleryImage, familyImage];
+  const donationSlides = PRESETS.map((value, index) => ({
+    amount: value,
+    image: amountImages[index] ?? educationImage,
+    title: t.flow.amountCards[index]?.title ?? `${value} ${t.flow.currency}`,
+    badge: t.flow.amountCards[index]?.badge ?? t.flow.chooseAmount,
+    description:
+      index === 0
+        ? t.flow.impact.low
+        : index === 1
+          ? t.flow.impact.mid
+          : index === 2
+            ? t.flow.impact.high
+            : t.flow.impact.top,
+  }));
 
   function goStep1() {
     if (!validAmount) {
@@ -152,26 +175,20 @@ function DonatePage() {
                     <p className="mt-8 text-xs font-semibold uppercase tracking-[0.22em] text-primary">
                       {t.flow.chooseAmount}
                     </p>
-                    <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-4">
-                      {PRESETS.map((value) => (
-                        <button
-                          key={value}
-                          type="button"
-                          onClick={() => {
-                            setPreset(value);
-                            setCustom("");
-                          }}
-                          className={cn(
-                            "rounded-2xl border px-3 py-4 font-display text-lg font-bold transition-all duration-300",
-                            preset === value
-                              ? "gradient-warm -translate-y-0.5 border-transparent text-primary-foreground shadow-soft"
-                              : "border-border bg-secondary/50 hover:-translate-y-0.5 hover:border-primary",
-                          )}
-                        >
-                          {value} {t.flow.currency}
-                        </button>
-                      ))}
-                    </div>
+                    <DonationAmountCarousel
+                      className="mt-3"
+                      slides={donationSlides}
+                      value={preset}
+                      currency={t.flow.currency}
+                      hint={t.flow.carouselHint}
+                      previousLabel={t.flow.previousAmount}
+                      nextLabel={t.flow.nextAmount}
+                      selectedLabel={t.flow.selectedAmount}
+                      onValueChange={(value) => {
+                        setPreset(value);
+                        setCustom("");
+                      }}
+                    />
 
                     <label className="mt-5 block text-sm font-medium">
                       {t.flow.custom}
@@ -298,24 +315,25 @@ function DonatePage() {
 
               <div className="mt-8 flex flex-wrap gap-3">
                 {step > 0 ? (
-                  <button
+                  <Button
                     type="button"
+                    variant="outline"
                     onClick={() => {
                       setErrors([]);
                       setStep(step - 1);
                     }}
-                    className="rounded-full border border-border px-7 py-4 text-sm font-semibold transition-colors duration-300 hover:border-primary hover:text-primary"
+                    className="h-auto rounded-full px-7 py-4"
                   >
                     {t.flow.back}
-                  </button>
+                  </Button>
                 ) : null}
-                <button
+                <Button
                   type="button"
                   onClick={step === 0 ? goStep1 : step === 1 ? goStep2 : confirm}
-                  className="flex-1 rounded-full gradient-warm px-7 py-4 text-sm font-semibold text-primary-foreground shadow-soft transition-transform duration-300 hover:-translate-y-1"
+                  className="h-auto flex-1 rounded-full gradient-warm px-7 py-4 shadow-soft transition-transform duration-300 hover:-translate-y-1"
                 >
                   {step === 2 ? t.flow.confirm : t.flow.next}
-                </button>
+                </Button>
               </div>
 
               <a
