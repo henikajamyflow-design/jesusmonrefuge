@@ -76,11 +76,12 @@ export function DonationAmountCarousel({
 
   React.useEffect(() => {
     if (selectedIndex < 0) return;
-    const controls = animate(progress, selectedIndex, {
+    const controls = animate(progress.get(), selectedIndex, {
       type: reduceMotion ? "tween" : "spring",
       duration: reduceMotion ? 0 : undefined,
       stiffness: 220,
       damping: 28,
+      onUpdate: (latest) => progress.set(latest),
     });
     return () => controls.stop();
   }, [progress, reduceMotion, selectedIndex]);
@@ -95,11 +96,12 @@ export function DonationAmountCarousel({
       const slide = slides[normalized];
       if (!slide) return;
       onValueChange(slide.amount);
-      animate(progress, normalized, {
+      animate(progress.get(), normalized, {
         type: reduceMotion ? "tween" : "spring",
         duration: reduceMotion ? 0 : undefined,
         stiffness: 220,
         damping: 28,
+        onUpdate: (latest) => progress.set(latest),
       });
     },
     [onValueChange, progress, reduceMotion, slides, total],
