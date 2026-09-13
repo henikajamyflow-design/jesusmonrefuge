@@ -295,6 +295,19 @@
   &:hover::before { opacity: 1; }
 }
 
+@keyframes blob {
+  0%, 100% { transform: translateY(10px); }
+  50% { transform: translate(-10px); }
+}
+
+@utility animate-blob {
+  animation: blob 4s ease-in-out infinite;
+}
+
+@utility animation-delay-1000 {
+  animation-delay: -1s;
+}
+
 html {
   scroll-behavior: smooth;
 }
