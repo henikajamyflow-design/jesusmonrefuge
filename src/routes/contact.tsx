@@ -2,6 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { links, useLang } from "@/lib/i18n";
 import { PageHero } from "@/components/site/Section";
 import { Reveal } from "@/components/site/Reveal";
+import { GradientCardShowcase } from "@/components/ui/gradient-card-showcase";
+import { Mail, Phone, MapPin, Instagram, Facebook } from "lucide-react";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -25,52 +27,78 @@ export const Route = createFileRoute("/contact")({
 function ContactPage() {
   const { t } = useLang();
 
-  const cards = [
-    { label: t.contact.emailLabel, value: links.email, href: `mailto:${links.email}` },
-    { label: t.contact.phoneLabel, value: links.phone, href: `tel:${links.phone.replace(/\s/g, "")}` },
-    { label: t.contact.addressLabel, value: t.contact.address },
+  const contactCards = [
+    {
+      title: t.contact.emailLabel,
+      desc: links.email,
+      gradientFrom: "#d97706",
+      gradientTo: "#c2410c",
+      href: `mailto:${links.email}`,
+      icon: <Mail className="size-6" />,
+      cta: "Envoyer un e-mail",
+    },
+    {
+      title: t.contact.phoneLabel,
+      desc: links.phone,
+      gradientFrom: "#0d9488",
+      gradientTo: "#059669",
+      href: `tel:${links.phone.replace(/\s/g, "")}`,
+      icon: <Phone className="size-6" />,
+      cta: "Appeler",
+    },
+    {
+      title: t.contact.addressLabel,
+      desc: t.contact.address,
+      gradientFrom: "#7c3aed",
+      gradientTo: "#db2777",
+      icon: <MapPin className="size-6" />,
+    },
+    {
+      title: t.contact.follow,
+      desc: "Instagram & Facebook",
+      gradientFrom: "#f59e0b",
+      gradientTo: "#7c2d12",
+      icon: (
+        <div className="flex -space-x-2">
+          <Instagram className="size-5" />
+          <Facebook className="size-5" />
+        </div>
+      ),
+      cta: "Suivre l'actualité",
+    },
   ];
 
   return (
     <>
       <PageHero kicker={t.orgSub} title={t.contact.title} intro={t.contact.body} />
 
-      <section className="mx-auto max-w-5xl px-5 py-20 lg:px-8 lg:py-28">
-        <div className="grid gap-5 md:grid-cols-3">
-          {cards.map((card, i) => (
-            <Reveal key={card.label} delay={i * 110}>
-              <div className="h-full rounded-[1.75rem] border border-border bg-card p-7 shadow-soft transition-all duration-500 hover:-translate-y-2 hover:shadow-lift">
-                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">{card.label}</p>
-                {card.href ? (
-                  <a href={card.href} className="mt-4 block break-words text-lg font-medium hover:text-primary">
-                    {card.value}
-                  </a>
-                ) : (
-                  <p className="mt-4 text-lg font-medium leading-relaxed">{card.value}</p>
-                )}
-              </div>
-            </Reveal>
-          ))}
-        </div>
+      <section className="mx-auto max-w-6xl px-5 py-20 lg:px-8 lg:py-28">
+        <Reveal>
+          <GradientCardShowcase cards={contactCards} />
+        </Reveal>
 
         <Reveal delay={200}>
-          <div className="mt-10 rounded-[1.75rem] gradient-warm p-8 text-center shadow-lift">
-            <p className="font-display text-2xl font-bold text-primary-foreground">{t.contact.follow}</p>
+          <div className="mt-16 rounded-[1.75rem] gradient-warm p-8 text-center shadow-lift">
+            <p className="font-display text-2xl font-bold text-primary-foreground">
+              {t.contact.follow}
+            </p>
             <div className="mt-6 flex flex-wrap justify-center gap-3">
               <a
                 href={links.instagram}
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-full bg-card px-6 py-3 text-sm font-semibold text-primary transition-transform duration-300 hover:-translate-y-1"
+                className="inline-flex items-center gap-2 rounded-full bg-card px-6 py-3 text-sm font-semibold text-primary transition-transform duration-300 hover:-translate-y-1"
               >
+                <Instagram className="size-4" />
                 Instagram
               </a>
               <a
                 href={links.facebook}
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-full bg-card px-6 py-3 text-sm font-semibold text-primary transition-transform duration-300 hover:-translate-y-1"
+                className="inline-flex items-center gap-2 rounded-full bg-card px-6 py-3 text-sm font-semibold text-primary transition-transform duration-300 hover:-translate-y-1"
               >
+                <Facebook className="size-4" />
                 Facebook
               </a>
             </div>
