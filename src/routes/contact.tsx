@@ -35,7 +35,7 @@ function ContactPage() {
       gradientTo: "#c2410c",
       href: `mailto:${links.email}`,
       icon: <Mail className="size-6" />,
-      cta: "Envoyer un e-mail",
+      cta: t.contact.emailCta,
     },
     {
       title: t.contact.phoneLabel,
@@ -44,7 +44,7 @@ function ContactPage() {
       gradientTo: "#059669",
       href: `tel:${links.phone.replace(/\s/g, "")}`,
       icon: <Phone className="size-6" />,
-      cta: "Appeler",
+      cta: t.contact.phoneCta,
     },
     {
       title: t.contact.addressLabel,
@@ -64,7 +64,7 @@ function ContactPage() {
           <Facebook className="size-5" />
         </div>
       ),
-      cta: "Suivre l'actualité",
+      cta: t.contact.followCta,
     },
   ];
 
