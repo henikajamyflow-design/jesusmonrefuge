@@ -31,8 +31,10 @@ function ContactPage() {
     {
       title: t.contact.emailLabel,
       desc: links.email,
-      gradientFrom: "#d97706",
-      gradientTo: "#c2410c",
+      gradientFrom: "#4285F4",
+      gradientTo: "#34A853",
+      glowFrom: "#4285F4",
+      glowTo: "#EA4335",
       href: `mailto:${links.email}`,
       icon: <Mail className="size-6" />,
       cta: t.contact.emailCta,
@@ -42,6 +44,8 @@ function ContactPage() {
       desc: links.phone,
       gradientFrom: "#0d9488",
       gradientTo: "#059669",
+      glowFrom: "#22c55e",
+      glowTo: "#16a34a",
       href: `tel:${links.phone.replace(/\s/g, "")}`,
       icon: <Phone className="size-6" />,
       cta: t.contact.phoneCta,
@@ -49,22 +53,33 @@ function ContactPage() {
     {
       title: t.contact.addressLabel,
       desc: t.contact.address,
-      gradientFrom: "#7c3aed",
-      gradientTo: "#db2777",
+      gradientFrom: "#FBBC05",
+      gradientTo: "#EA4335",
+      glowFrom: "#FBBC05",
+      glowTo: "#34A853",
       icon: <MapPin className="size-6" />,
     },
     {
-      title: t.contact.follow,
-      desc: "Instagram & Facebook",
-      gradientFrom: "#f59e0b",
-      gradientTo: "#7c2d12",
-      icon: (
-        <div className="flex -space-x-2">
-          <Instagram className="size-5" />
-          <Facebook className="size-5" />
-        </div>
-      ),
-      cta: t.contact.followCta,
+      title: "Instagram",
+      desc: t.contact.instagramDesc,
+      gradientFrom: "#833AB4",
+      gradientTo: "#E1306C",
+      glowFrom: "#833AB4",
+      glowTo: "#FCAF45",
+      href: links.instagram,
+      icon: <Instagram className="size-6" />,
+      cta: t.contact.instagramCta,
+    },
+    {
+      title: "Facebook",
+      desc: t.contact.facebookDesc,
+      gradientFrom: "#1877F2",
+      gradientTo: "#1877F2",
+      glowFrom: "#1877F2",
+      glowTo: "#42B72A",
+      href: links.facebook,
+      icon: <Facebook className="size-6" />,
+      cta: t.contact.facebookCta,
     },
   ];
 
@@ -75,34 +90,6 @@ function ContactPage() {
       <section className="mx-auto max-w-6xl px-5 py-20 lg:px-8 lg:py-28">
         <Reveal>
           <GradientCardShowcase cards={contactCards} />
-        </Reveal>
-
-        <Reveal delay={200}>
-          <div className="mt-16 rounded-[1.75rem] gradient-warm p-8 text-center shadow-lift">
-            <p className="font-display text-2xl font-bold text-primary-foreground">
-              {t.contact.follow}
-            </p>
-            <div className="mt-6 flex flex-wrap justify-center gap-3">
-              <a
-                href={links.instagram}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-card px-6 py-3 text-sm font-semibold text-primary transition-transform duration-300 hover:-translate-y-1"
-              >
-                <Instagram className="size-4" />
-                Instagram
-              </a>
-              <a
-                href={links.facebook}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-card px-6 py-3 text-sm font-semibold text-primary transition-transform duration-300 hover:-translate-y-1"
-              >
-                <Facebook className="size-4" />
-                Facebook
-              </a>
-            </div>
-          </div>
         </Reveal>
       </section>
     </>

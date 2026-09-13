@@ -6,6 +6,9 @@ export interface GradientCardData {
   desc: string;
   gradientFrom: string;
   gradientTo: string;
+  /** Optional glow colors. Falls back to gradientFrom/gradientTo when omitted. */
+  glowFrom?: string;
+  glowTo?: string;
   href?: string;
   icon?: ReactNode;
   cta?: string;
@@ -20,7 +23,7 @@ export function GradientCardShowcase({ cards, className }: GradientCardShowcaseP
   return (
     <div
       className={cn(
-        "grid gap-6 sm:grid-cols-2 lg:grid-cols-4",
+        "grid gap-6 sm:grid-cols-2 lg:grid-cols-3",
         className,
       )}
     >
@@ -33,6 +36,18 @@ export function GradientCardShowcase({ cards, className }: GradientCardShowcaseP
           className="group relative block h-full min-h-[16rem] overflow-hidden rounded-[1.75rem] border border-border bg-card p-[1px] shadow-soft transition-all duration-500 hover:-translate-y-2 hover:shadow-lift"
           style={{ textDecoration: "none" }}
         >
+          {/* Outer glow on hover */}
+          <span
+            aria-hidden
+            className="pointer-events-none absolute -inset-2 rounded-[2.25rem] bg-gradient-to-br from-[var(--glow-from)] to-[var(--glow-to)] opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-70"
+            style={
+              {
+                "--glow-from": card.glowFrom ?? card.gradientFrom,
+                "--glow-to": card.glowTo ?? card.gradientTo,
+              } as React.CSSProperties
+            }
+          />
+
           {/* Skewed gradient panel */}
           <span
             aria-hidden
