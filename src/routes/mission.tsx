@@ -1,4 +1,5 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
+import { DonateButton } from "@/components/ui/subtle-button";
 import { useLang } from "@/lib/i18n";
 import { PageHero } from "@/components/site/Section";
 import { Reveal } from "@/components/site/Reveal";
@@ -77,12 +78,9 @@ function MissionPage() {
                 className="aspect-[4/5] w-full object-cover"
               />
             </div>
-            <Link
-              to="/don"
-              className="mt-6 inline-flex rounded-full gradient-warm px-7 py-3.5 text-sm font-semibold text-primary-foreground shadow-soft transition-transform duration-300 hover:-translate-y-1"
-            >
+            <DonateButton variant="solid" className="mt-6 px-7 py-3.5">
               {t.cta.partner}
-            </Link>
+            </DonateButton>
           </Reveal>
         </div>
       </section>

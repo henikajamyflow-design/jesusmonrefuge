@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { links, useLang } from "@/lib/i18n";
+import { DonateButton } from "@/components/ui/subtle-button";
 import { Reveal } from "./Reveal";
 
 export function Footer() {
@@ -14,12 +15,9 @@ export function Footer() {
               {t.footerCta}
             </h2>
             <div className="relative mt-8 flex flex-wrap justify-center gap-3">
-              <Link
-                to="/don"
-                className="rounded-full bg-card px-8 py-4 text-sm font-semibold text-primary shadow-lift transition-transform duration-300 hover:-translate-y-1"
-              >
+              <DonateButton variant="outline" className="px-8 py-4 shadow-lift">
                 {t.cta.sponsor}
-              </Link>
+              </DonateButton>
               <Link
                 to="/contact"
                 className="rounded-full border border-primary-foreground/50 px-8 py-4 text-sm font-semibold text-primary-foreground transition-colors duration-300 hover:bg-primary-foreground/10"

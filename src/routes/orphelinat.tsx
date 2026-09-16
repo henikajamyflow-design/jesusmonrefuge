@@ -1,4 +1,5 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
+import { DonateButton } from "@/components/ui/subtle-button";
 import { useLang } from "@/lib/i18n";
 import { PageHero, Zigzag } from "@/components/site/Section";
 import { Reveal } from "@/components/site/Reveal";
@@ -65,12 +66,9 @@ function OrphanagePage() {
             ))}
           </div>
           <Reveal delay={200}>
-            <Link
-              to="/don"
-              className="mt-12 inline-flex rounded-full gradient-warm px-8 py-4 text-sm font-semibold text-primary-foreground shadow-soft transition-transform duration-300 hover:-translate-y-1"
-            >
+            <DonateButton variant="solid" className="mt-12 px-8 py-4">
               {t.cta.sponsor}
-            </Link>
+            </DonateButton>
           </Reveal>
         </div>
       </section>
