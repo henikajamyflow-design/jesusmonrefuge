@@ -16,6 +16,7 @@ import gallery2 from "@/assets/gallery-2.jpg";
 import gallery3 from "@/assets/gallery-3.jpg";
 import gallery4 from "@/assets/gallery-4.jpg";
 import { CollectionSurfer } from "@/components/ui/collection-surfer";
+import { DonateButton } from "@/components/ui/subtle-button";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -119,16 +120,7 @@ function Index() {
                 {t.hero.verse}
               </p>
               <div className="mt-9 flex flex-wrap gap-3">
-                <Link
-                  to="/don"
-                  className="group relative overflow-hidden rounded-full gradient-warm px-8 py-4 text-sm font-semibold text-primary-foreground shadow-lift transition-transform duration-300 hover:-translate-y-1"
-                >
-                  <span className="relative z-10">{t.cta.sponsor}</span>
-                  <span
-                    aria-hidden
-                    className="absolute inset-0 -translate-x-full bg-primary-foreground/25 transition-transform duration-700 group-hover:translate-x-full"
-                  />
-                </Link>
+                <DonateButton variant="solid">{t.cta.sponsor}</DonateButton>
                 <Link
                   to="/orphelinat"
                   className="rounded-full border border-primary-foreground/40 px-8 py-4 text-sm font-semibold text-primary-foreground backdrop-blur transition-colors duration-300 hover:bg-primary-foreground/10"
@@ -278,12 +270,9 @@ function Index() {
             ))}
           </div>
           <Reveal delay={200}>
-            <Link
-              to="/don"
-              className="mt-12 inline-flex rounded-full bg-card px-8 py-4 text-sm font-semibold text-primary shadow-lift transition-transform duration-300 hover:-translate-y-1"
-            >
+            <DonateButton variant="outline" className="mt-12 px-8 py-4">
               {t.cta.sponsor}
-            </Link>
+            </DonateButton>
           </Reveal>
         </div>
       </section>

@@ -2,6 +2,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { useLang } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
+import { DonateButton } from "@/components/ui/subtle-button";
 
 export function Header() {
   const { t, lang, setLang } = useLang();
@@ -99,12 +100,9 @@ export function Header() {
             ))}
           </div>
 
-          <Link
-            to="/don"
-            className="hidden rounded-full gradient-warm px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-soft transition-transform duration-300 hover:-translate-y-0.5 sm:inline-flex"
-          >
+          <DonateButton variant="solid" className="hidden px-5 py-2.5 shadow-soft sm:inline-flex">
             {t.cta.give}
-          </Link>
+          </DonateButton>
 
           <button
             type="button"
@@ -154,13 +152,14 @@ export function Header() {
                 {item.label}
               </Link>
             ))}
-            <Link
-              to="/don"
+            <DonateButton
+              variant="solid"
+              fullWidth
               onClick={() => setOpen(false)}
-              className="mt-1 rounded-2xl gradient-warm px-3 py-2.5 text-center text-sm font-semibold text-primary-foreground"
+              className="mt-1 rounded-2xl px-3 py-2.5"
             >
               {t.cta.give}
-            </Link>
+            </DonateButton>
           </div>
         </nav>
       </div>
