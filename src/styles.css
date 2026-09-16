@@ -246,6 +246,22 @@
   }
 }
 
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes spin-angle {
+  to {
+    --angle: 360deg;
+  }
+}
+
+@utility border-spin {
+  animation: spin-angle 2.8s linear infinite;
+}
+
 @keyframes marquee-x {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
