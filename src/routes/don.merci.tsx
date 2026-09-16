@@ -4,6 +4,7 @@ import { useLang } from "@/lib/i18n";
 import { PageHero } from "@/components/site/Section";
 import { Reveal } from "@/components/site/Reveal";
 import { clearDonation, readDonation, type Donation } from "@/lib/donation";
+import { DonateButton } from "@/components/ui/subtle-button";
 
 export const Route = createFileRoute("/don/merci")({
   head: () => ({
@@ -75,13 +76,13 @@ function ThanksPage() {
             >
               {t.thanks.backHome}
             </Link>
-            <Link
-              to="/don"
+            <DonateButton
+              variant="outline"
               onClick={() => clearDonation()}
-              className="rounded-full border border-border px-7 py-4 text-sm font-semibold transition-colors duration-300 hover:border-primary hover:text-primary"
+              className="px-7 py-4"
             >
               {t.thanks.newDonation}
-            </Link>
+            </DonateButton>
           </div>
         </Reveal>
       </section>
