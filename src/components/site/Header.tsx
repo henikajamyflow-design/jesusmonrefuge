@@ -6,6 +6,7 @@ import { DonateButton } from "@/components/ui/subtle-button";
 
 export function Header() {
   const { t, lang, setLang } = useLang();
+
   const [atTop, setAtTop] = useState(true);
   const [open, setOpen] = useState(false);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
@@ -80,14 +81,14 @@ export function Header() {
               scrolled ? "border-border bg-card" : "border-primary-foreground/30 bg-foreground/25 backdrop-blur",
             )}
           >
-            {(["fr", "en"] as const).map((code) => (
+            {LANGS.map((code) => (
               <button
                 key={code}
                 type="button"
                 onClick={() => setLang(code)}
                 aria-pressed={lang === code}
                 className={cn(
-                  "rounded-full px-2.5 py-1 uppercase transition-colors",
+                  "rounded-full px-2 py-1 uppercase transition-colors",
                   lang === code
                     ? "bg-primary text-primary-foreground"
                     : scrolled
