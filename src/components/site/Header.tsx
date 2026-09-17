@@ -1,6 +1,6 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { useLang } from "@/lib/i18n";
+import { useLang, LANGS } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 import { DonateButton } from "@/components/ui/subtle-button";
 
