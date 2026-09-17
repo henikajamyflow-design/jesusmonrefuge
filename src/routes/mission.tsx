@@ -25,6 +25,36 @@ const missionEn = [
   "Build ties of solidarity, cooperation and friendship with Madagascar, enriching one another through our differences.",
 ];
 
+const missionDe = [
+  "An der Gründung von Waisenhäusern in Madagaskar mitwirken und Patenschaftsprogramme für benachteiligte oder verwaiste Kinder aufbauen.",
+  "Bildung und Gesundheitsversorgung für Minderjährige in anerkannten Einrichtungen sicherstellen, gemäß den geltenden Gesetzen Madagaskars.",
+  "Projekte in den Bereichen Bildung, Gesundheit, Landwirtschaft, Wirtschaft und christliche Gemeindearbeit anstoßen und unterstützen.",
+  "Der lokalen Bevölkerung direkt oder indirekt helfen, im Rahmen von Partnerschaften.",
+  "Initiativen fördern, die Arbeitsplätze und Einkommen schaffen, insbesondere durch feste Anstellung schutzbedürftiger Menschen im Waisenhaus.",
+  "Ausbildungsprogramme entwickeln, die Verantwortung und Selbstständigkeit der Begünstigten stärken, einschließlich geistlicher Schulung.",
+  "Bande der Solidarität, Zusammenarbeit und Freundschaft mit Madagaskar knüpfen und uns gegenseitig durch unsere Unterschiede bereichern.",
+];
+
+const missionIt = [
+  "Partecipare alla creazione di orfanotrofi in Madagascar e avviare programmi di sostegno a distanza per bambini orfani o svantaggiati.",
+  "Garantire istruzione e assistenza sanitaria ai minori in strutture autorizzate, nel rispetto delle leggi vigenti in Madagascar.",
+  "Avviare e sostenere progetti in sinergia in vari ambiti: istruzione, salute, agricoltura, economia e servizi religiosi cristiani.",
+  "Portare aiuto diretto o indiretto alle popolazioni locali con ogni mezzo, in un quadro di partenariato.",
+  "Favorire ogni iniziativa che crei lavoro e reddito, in particolare l'impiego retribuito di persone vulnerabili nell'orfanotrofio.",
+  "Sviluppare programmi di formazione che favoriscano responsabilità e autonomia dei beneficiari, comprese formazioni religiose.",
+  "Sviluppare legami di solidarietà, cooperazione e amicizia con il Madagascar, arricchendoci reciprocamente delle nostre differenze.",
+];
+
+const missionEs = [
+  "Participar en la creación de orfanatos en Madagascar y poner en marcha programas de apadrinamiento para niños huérfanos o desfavorecidos.",
+  "Garantizar la educación y la atención sanitaria de los menores en centros autorizados, conforme a las leyes vigentes en Madagascar.",
+  "Impulsar y apoyar proyectos en sinergia en varios ámbitos: educación, salud, agricultura, economía y servicios religiosos cristianos.",
+  "Prestar ayuda directa o indirecta a las poblaciones locales por todos los medios, en un marco de colaboración.",
+  "Favorecer toda iniciativa que cree empleo e ingresos, en especial el empleo remunerado de personas vulnerables en el orfanato.",
+  "Desarrollar programas de formación que fomenten la responsabilidad y la autonomía de los beneficiarios, incluida la formación religiosa.",
+  "Crear vínculos de solidaridad, cooperación y amistad con Madagascar, enriqueciéndonos mutuamente con nuestras diferencias.",
+];
+
 export const Route = createFileRoute("/mission")({
   head: () => ({
     meta: [
@@ -46,7 +76,8 @@ export const Route = createFileRoute("/mission")({
 
 function MissionPage() {
   const { t, lang } = useLang();
-  const items = lang === "fr" ? missionFr : missionEn;
+  const items =
+    { fr: missionFr, en: missionEn, de: missionDe, it: missionIt, es: missionEs }[lang] ?? missionEn;
 
   return (
     <>
