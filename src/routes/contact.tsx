@@ -3,6 +3,7 @@ import { links, useLang } from "@/lib/i18n";
 import { PageHero } from "@/components/site/Section";
 import { Reveal } from "@/components/site/Reveal";
 import { GradientCardShowcase } from "@/components/ui/gradient-card-showcase";
+import contactPhone from "@/assets/contact-telephone.png.asset.json";
 import { Mail, Phone, MapPin, Instagram, Facebook } from "lucide-react";
 
 export const Route = createFileRoute("/contact")({
@@ -85,7 +86,13 @@ function ContactPage() {
 
   return (
     <>
-      <PageHero kicker={t.orgSub} title={t.contact.title} intro={t.contact.body} />
+      <PageHero
+        kicker={t.orgSub}
+        title={t.contact.title}
+        intro={t.contact.body}
+        image={contactPhone.url}
+        imageAlt={t.contact.title}
+      />
 
       <section className="mx-auto max-w-6xl px-5 py-20 lg:px-8 lg:py-28">
         <Reveal>

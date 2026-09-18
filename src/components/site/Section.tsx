@@ -6,10 +6,14 @@ export function PageHero({
   kicker,
   title,
   intro,
+  image,
+  imageAlt,
 }: {
   kicker: string;
   title: string;
   intro?: string;
+  image?: string;
+  imageAlt?: string;
 }) {
   return (
     <section className="grain relative overflow-hidden border-b border-border bg-secondary/40 px-5 pt-36 pb-16 lg:px-8 lg:pt-44 lg:pb-24">
@@ -21,17 +25,30 @@ export function PageHero({
         aria-hidden
         className="pointer-events-none absolute inset-x-0 bottom-0 h-px gradient-warm opacity-40"
       />
-      <div className="relative mx-auto max-w-4xl">
-        <Reveal>
-          <p className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.28em] text-primary">
-            <span aria-hidden className="h-px w-10 gradient-warm" />
-            {kicker}
-          </p>
-          <h1 className="mt-5 text-4xl font-bold leading-[1.05] sm:text-5xl lg:text-7xl">{title}</h1>
-          {intro ? (
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">{intro}</p>
-          ) : null}
-        </Reveal>
+      <div className="relative mx-auto flex max-w-6xl flex-col items-center gap-12 lg:flex-row lg:items-center lg:justify-between lg:gap-16">
+        <div className="max-w-4xl">
+          <Reveal>
+            <p className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.28em] text-primary">
+              <span aria-hidden className="h-px w-10 gradient-warm" />
+              {kicker}
+            </p>
+            <h1 className="mt-5 text-4xl font-bold leading-[1.05] sm:text-5xl lg:text-7xl">{title}</h1>
+            {intro ? (
+              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">{intro}</p>
+            ) : null}
+          </Reveal>
+        </div>
+        {image ? (
+          <Reveal delay={200} className="shrink-0">
+            <img
+              src={image}
+              alt={imageAlt ?? ""}
+              width={543}
+              height={724}
+              className="float-slow w-44 sm:w-56 lg:w-72 [filter:drop-shadow(0_30px_40px_oklch(0.44_0.104_37/0.35))]"
+            />
+          </Reveal>
+        ) : null}
       </div>
     </section>
   );
