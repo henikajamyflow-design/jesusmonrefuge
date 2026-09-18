@@ -1,15 +1,28 @@
 import { useEffect, useRef, useState } from "react";
+import { useLang } from "@/lib/i18n";
 
-/** Animates the numeric part of a value like "2022", "30M", "100%". */
+const LOCALES: Record<string, string> = {
+  fr: "fr-FR",
+  en: "en-US",
+  de: "de-DE",
+  it: "it-IT",
+  es: "es-ES",
+};
+
+/** Animates the numeric part of a value like "2023", "33.3M", "100%". */
 export function Counter({ value, className }: { value: string; className?: string }) {
+  const { lang } = useLang();
   const match = /^(\D*)([\d.,]+)(.*)$/.exec(value);
   const ref = useRef<HTMLSpanElement | null>(null);
-  const target = match ? Number(match[2]!.replace(/[,\s]/g, "")) : 0;
+  const normalized = match ? match[2].replace(/\s/g, "").replace(",", ".") : "";
+  const target = normalized !== "" && Number.isFinite(Number(normalized)) ? Number(normalized) : 0;
+  const decimals = normalized.includes(".") ? normalized.split(".")[1]!.length : 0;
+  const locale = LOCALES[lang] ?? "fr-FR";
   const [n, setN] = useState(0);
 
   useEffect(() => {
     const el = ref.current;
-    if (!el || !match || !Number.isFinite(target)) return;
+    if (!el || !match || normalized === "" || !Number.isFinite(target)) return;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce) {
       setN(target);
@@ -25,7 +38,7 @@ export function Counter({ value, className }: { value: string; className?: strin
         const tick = (now: number) => {
           const t = Math.min(1, (now - start) / duration);
           const eased = 1 - Math.pow(1 - t, 3);
-          setN(Math.round(target * eased));
+          setN(target * eased);
           if (t < 1) raf = requestAnimationFrame(tick);
         };
         raf = requestAnimationFrame(tick);
@@ -37,14 +50,19 @@ export function Counter({ value, className }: { value: string; className?: strin
       observer.disconnect();
       cancelAnimationFrame(raf);
     };
-  }, [target, match]);
+  }, [target, match, normalized]);
 
-  if (!match) return <span className={className}>{value}</span>;
+  if (!match || normalized === "" || !Number.isFinite(target)) {
+    return <span className={className}>{value}</span>;
+  }
 
   return (
     <span ref={ref} className={className}>
       {match[1]}
-      {n.toLocaleString("fr-FR")}
+      {n.toLocaleString(locale, {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals,
+      })}
       {match[3]}
     </span>
   );
