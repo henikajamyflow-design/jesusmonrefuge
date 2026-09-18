@@ -14,7 +14,7 @@ export function Counter({ value, className }: { value: string; className?: strin
   const { lang } = useLang();
   const match = /^(\D*)([\d.,]+)(.*)$/.exec(value);
   const ref = useRef<HTMLSpanElement | null>(null);
-  const normalized = match ? match[2].replace(/\s/g, "").replace(",", ".") : "";
+  const normalized = match ? match[2]!.replace(/\s/g, "").replace(",", ".") : "";
   const target = normalized !== "" && Number.isFinite(Number(normalized)) ? Number(normalized) : 0;
   const decimals = normalized.includes(".") ? normalized.split(".")[1]!.length : 0;
   const locale = LOCALES[lang] ?? "fr-FR";
