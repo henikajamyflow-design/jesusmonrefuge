@@ -50,7 +50,7 @@ export function Counter({ value, className }: { value: string; className?: strin
       observer.disconnect();
       cancelAnimationFrame(raf);
     };
-  }, [target, match, normalized]);
+  }, [target, normalized]);
 
   if (!match || normalized === "" || !Number.isFinite(target)) {
     return <span className={className}>{value}</span>;
