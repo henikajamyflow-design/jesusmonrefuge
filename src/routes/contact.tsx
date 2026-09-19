@@ -28,6 +28,10 @@ export const Route = createFileRoute("/contact")({
 function ContactPage() {
   const { t } = useLang();
 
+  const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+    t.contact.address,
+  )}`;
+
   const contactCards = [
     {
       title: t.contact.emailLabel,
@@ -36,7 +40,7 @@ function ContactPage() {
       gradientTo: "#34A853",
       glowFrom: "#4285F4",
       glowTo: "#EA4335",
-      href: `mailto:${links.email}`,
+      href: `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(links.email)}`,
       icon: <Mail className="size-6" />,
       cta: t.contact.emailCta,
     },
@@ -58,6 +62,7 @@ function ContactPage() {
       gradientTo: "#EA4335",
       glowFrom: "#FBBC05",
       glowTo: "#34A853",
+      href: mapsUrl,
       icon: <MapPin className="size-6" />,
     },
     {
